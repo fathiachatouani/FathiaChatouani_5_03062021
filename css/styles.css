@@ -1,0 +1,262 @@
+/* MINI RESET */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #fff;
+	color: #000;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+    margin : 0;
+	padding: 0;
+}
+
+main{
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: #e0d9c7
+}
+
+.fa-paw{
+    color: #353b47;
+    font-size: 30px;
+    padding-right:7px;
+}
+
+.fa-shopping-basket{
+    color: #353b47;
+}
+
+h1{
+    align-items: center;
+    color: #353b47;
+    font-size: 30px;
+    font-family: Aclonica;
+    display: flex;
+    flex-direction: column;
+}
+
+a{
+    text-decoration: none;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    nav li{
+        list-style-type: none;
+        font-weight: 700;
+        font-size: 30px;
+        padding-left: 10px;
+        color: #353b47;
+    }
+
+.panier{
+    display: none;
+}
+
+.blocs{  
+    width: 100%;
+ }
+        .blocs ul{
+            padding: 0;
+        }
+    
+.item{
+    /* width: calc( ( 100% - 400px) / 4 ); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+}
+
+.bloc-description{
+    width: 100%;
+    background-color: #e0d9c7;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-bottom: 20px;
+}
+
+.description-produit{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #353b47;
+}
+
+.descr{
+    text-align: justify;
+}
+
+.prix{
+    background-color: #f4f1ec;
+    padding: 15px;
+    font-weight: 700;
+    border-radius: 20px;
+    font-size: 23px;
+}
+
+.descr{
+    font-size: 20px;
+}
+
+ .nounours_img{
+     width: 100%;
+     border: 20px solid #e1d0c6;
+     display: flex;
+ }
+
+ footer{
+    /* padding-right: 20px;
+    padding-left: 20px; */
+    background-color: #e0d9c7;
+ }
+
+    footer ul{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 90px;
+        font-size: 20px;
+        padding-left: 0;
+    }
+
+        footer ul li{
+            list-style: none;
+        }
+
+
+ /* RESPONSIVE TABLETTE */
+@media screen and (min-width: 768px) {
+
+ .panier{
+    display: block;
+    color: #353b47;
+}
+
+.blocs ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+    .blocs ul li{
+        width: calc( ( 100% - 40px ) / 2 );
+        max-width: 1024px;
+    }
+
+.nounours_img{
+    height: 300px;
+    object-fit: cover;
+    }
+
+.footer-page-pdt{
+    margin-top: 444px;
+}
+
+}
+
+
+/* RESPONSIVE ORDI PAGE D'ACCUEIL*/
+@media screen and (min-width: 1024px){
+    
+.nounours_img{
+    height: 420px;  
+}
+}
+
+
+/* PAGE PRODUIT DESCRIPTION ARTICLE */
+
+.choix{
+    display: flex;
+    justify-content: space-around;
+}
+
+.color{
+    width: 100%;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 8px;
+    margin-top: 30px;
+    max-width: 300px;
+    width: calc(( 100% - 20px) /2 );
+    font-size: 18px;
+}
+
+.colore{
+    display: flex;
+    justify-content: center;
+    background-color: #353b47;
+    color: #f4f1ec;
+    font-weight: 700;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    padding: 12px;
+    max-width: 380px;
+    width: 100%;
+}
+
+.panierp{
+    display: flex;
+    justify-content: center;
+}
+
+/* RESPONSIVE TABLETTE PAGE PRODUIT DESCRIPTION ARTICLE */
+@media screen and (min-width: 768px){
+
+header{
+    margin-bottom: 30px;
+}
+
+.container-produit{
+    display: flex;
+    height: 457px;
+
+}
+
+.bloc-descriptions{
+    margin-bottom: 0;
+}
+
+.description-produits{
+    margin-top: 35px;
+}
+
+.colore{
+    margin-top: 50px;
+}
+
+.doudou_img{
+    height: 100%;
+    object-fit: cover;
+}
+
+}
+
