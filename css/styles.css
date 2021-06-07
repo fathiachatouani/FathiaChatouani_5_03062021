@@ -148,6 +148,10 @@ nav ul{
             list-style: none;
         }
 
+                .mentions{
+                    display: none;
+                }
+
 
  /* RESPONSIVE TABLETTE */
 @media screen and (min-width: 768px) {
@@ -176,10 +180,12 @@ nav ul{
     object-fit: cover;
     }
 
-.footer-page-pdt{
+/* .footer-page-pdt{
     margin-top: 444px;
-}
-
+} */
+    .mentions{
+        display: block;
+    }
 }
 
 
@@ -260,3 +266,142 @@ header{
 
 }
 
+/* PAGE PANIER MOBILE */
+
+.bloc-panier{
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 30px;
+    
+}
+
+.recap{
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 56px;
+}
+
+.items{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 0 14px 5px 14px;
+}
+
+.norb{
+    font-weight: 700;
+}
+
+.prix-unite{
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.quantite{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+
+.somme{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 60px;
+}
+
+.quant{
+    width: 60px;
+    margin-top: 3px;
+}
+
+/* FORMULAIRE */
+.livraison{
+    text-align: center;
+    margin-top: 65px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.contact-b{
+    margin-top: 30px;
+}
+
+.form_1{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30px;
+    max-width: 480px;
+    margin: 0 auto;
+    max-width: 480px;
+}
+
+.form{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 26px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-control{
+    width: 100%;
+    max-width: 480px;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+
+/* RESPONSIVE TABLETTE PAGE PANIER MOBILE */
+@media screen and (min-width: 768px){
+
+    .bloc-panier{
+        max-width: 800px;
+        width: 100%;
+        padding: 30px;
+        margin: 0 auto;
+    }
+
+}
+
+/* PAGE CONFIRMATION DE COMMANDE */
+.confirme{
+    border: solid #e0d9c7 14px;
+    border-radius: 20px;
+    background-color: #e1d0c6;
+    padding: 12px;
+    margin-top: 40px;
+    max-width: 800px;
+    width: 100%;
+    margin: 30px auto 0;
+}
+
+.merci{
+    font-size: 25px;
+}
+
+.command{
+    font-size: 1.2em;
+    font-weight: 700;
+    text-align: center;
+}
+
+.prepa{
+    font-size: 19px;
+    text-align: center;
+}
+
+/* .foote{
+    display: flex;
+    align-items: flex-end;
+} */

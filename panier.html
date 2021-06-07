@@ -27,26 +27,101 @@
                 </nav>
             </header>
 
-            <h2>VOTRE PANIER</h2>
 
-            <div class="container-produit">
-                <div><img class="nounours_img doudou_img" src="/JWDP5/images/teddy_1.jpg" alt="visuel ours peluche | Orinoco"></div>
-                <div class="bloc-description bloc-descriptions">  
-                    <div class="description-produit description-produits">
-                        <h2>Norbert</h2>
-                        <span class="prix">29.00 €</span>
-                    </div>
-                    <div class="descr">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                
-                    <div class="panierp">
-                        <button class="color colore">Ajouter au panier</button> 
-                    </div>
+            <div class="bloc-panier">
+                <P class="recap">VOTRE PANIER</p>
+                <div class="items">
+                    <p>Article(s) :</p>
+                    <div></div>
+                    <p class="norb">Norbert (Black)</p>
+                    <select class="color quant">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                     
                 </div>
+                <div class="total">
+                    <div class="prix-unite">
+                        <p> prix unitaire :</p>
+                        <p>29.00 €</p>
+                     </div>
+
+                <div class="items">
+                    <p>Article(s) :</p>
+                    <div></div>
+                    <p class="norb">Norbert (Tan)</p>
+                    <select class="color quant">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    
+                </div>
+                <div class="total">
+                    <div class="prix-unite">
+                        <p> prix unitaire :</p>
+                        <p>29.00 €</p>
+                     </div>
+                    <p class="somme">Total : 0.00 €</p>
+                </div>
+            </div>
+                </div>
+                
             </div>
 
+<!-- FORMULAIRE xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+
+                    <p class="livraison">INDIQUEZ LES DETAILS DE LIVRAISON</p>
+					<div class="contact-bloc">
+						<div class="contact-b">
+							<form class="form_1" novalidate>
+								<div class="form">
+									<label for="nom">
+										Nom
+									</label>
+									<input id="nom" class="form-control" role="textbox" required tabindex="0" />
+								</div>
+
+                                <div class="form">
+									<label for="prenom">
+										Prénom
+									</label>
+									<input id="prenom" class="form-control" role="textbox" required tabindex="0" />
+								</div>
+
+                                <div class="form">
+									<label for="adresse">
+										Adresse
+									</label>
+									<input id="adresse" class="form-control" role="textbox" required tabindex="0" />
+								</div>
+
+                                <div class="form">
+									<label for="postal">
+										Code postal
+									</label>
+									<input id="postal" class="form-control" role="textbox" required tabindex="0" />
+								</div>
+
+                                <div class="form">
+									<label for="ville">
+										Ville
+									</label>
+									<input id="ville" class="form-control" role="textbox" required tabindex="0" />
+								</div>
+
+                                <div class="form">
+									<label for="email">
+										Adresse email
+									</label>
+									<input id="email" class="form-control" role="textbox" type="email" required />
+								</div>
+                            </form>
+                         </div>
+                    </div>
 
 
 
@@ -64,11 +139,48 @@
 
 
 
-            <footer class="footer-page-pdt">
+
+
+
+
+
+
+
+
+
+
+            <div class="panierp">
+                <button class="color colore">Valider mon panier</button> 
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <footer>
                 <ul>
-                    <li>A propos de nous</li>
-                    <li>Mentions légales</li>
-                    <li>Nous contacter</li>
+                    <li>A propos</li>
+                    <li class="mentions"><span> Mentions légales</span></li>
+                    <li>contact</li>
                     <li>Blog</li>
     
                 </ul>
