@@ -54,4 +54,28 @@ const teddies = [
       "imageUrl": "teddy_5.jpg"
     }
   ];
+
   
+
+for ( var i = 0; i < teddies.length; i++){
+
+  let nounours = ` <li class="item">
+                        <a href="produit.html?id=` + teddies[i]._id + `">
+                            <div>
+                                <div><img class="nounours_img" src="/JWDP5/images/` + teddies[i].imageUrl + `" alt="visuel ours peluche ` + teddies[i].name + ` | Orinoco"></div>
+                                <div class="bloc-description">
+                                    <div class="description-produit">
+                                        <h2>` + teddies[i].name + `</h2>
+                                        <span>` + teddies[i].colors + `</span>
+                                        <span class="prix">` + teddies[i].price + ` €</span>
+                                    </div>
+                                </div>
+                            </div>
+                          </a>
+                    </li>`;
+  
+  console.log(nounours)
+  
+  document.getElementById("js_ul").innerHTML += nounours;
+
+}
