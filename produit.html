@@ -11,7 +11,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
-        <script src="js/projet-orinoco.js"></script>
 	</head>
 
 	<body>
@@ -29,40 +28,42 @@
                 </nav>
             </header>
 
-            <div class="container-produit">
-                <div><img class="nounours_img doudou_img" src="/JWDP5/images/teddy_1.jpg" alt="visuel ours peluche | Orinoco"></div>
-                <div class="bloc-description bloc-descriptions">  
-                    <div class="description-produit description-produits">
-                        <h2>Norbert</h2>
-                        <span class="prix">29.00 €</span>
-                    </div>
-                    <div class="descr">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
+            <div id="js_produit" class="container-produit">
+                <template id="templateProduit">
+                    <div><img class="nounours_img doudou_img" src="/JWDP5/images/teddy_1.jpg" alt="visuel ours peluche | Orinoco"></div>
+                    <div class="bloc-description bloc-descriptions">  
+                        <div class="description-produit description-produits">
+                            <h2>Norbert</h2>
+                            <span class="prix">29.00 €</span>
+                        </div>
+                        <div class="descr">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
 
-                    <div class="choix">
-                        <select class="color">
-                            <option value="0">Couleur</option>
-                            <option value="1">Tan</option>
-                            <option value="2">Chocolate</option>
-                            <option value="3">Black</option>
-                            <option value="4">White</option>
-                        </select>
+                        <div class="choix">
+                            <select class="color">
+                                <option value="0">Couleur</option>
+                                <option value="1">Tan</option>
+                                <option value="2">Chocolate</option>
+                                <option value="3">Black</option>
+                                <option value="4">White</option>
+                            </select>
 
-                        <select class="color">
-                            <option value="0">Quantité</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
-                
-                    <div class="panierp">
-                      <a href="panier.html"> <button class="color colore">Ajouter au panier</button></a>
-                    </div>
+                            <select class="color">
+                                <option value="0">Quantité</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
                     
-                </div>
+                        <div class="panierp">
+                        <a href="panier.html"> <button class="color colore">Ajouter au panier</button></a>
+                        </div>
+                        
+                    </div>
+                </template>
             </div>
 
             <footer>
@@ -71,12 +72,11 @@
                     <li class="mentions"><span> Mentions légales</span></li>
                     <li>contact</li>
                     <li>Blog</li>
-    
                 </ul>
             </footer>
         </main>
 
         <script src="js/produits.js"></script>
-        
+
     </body>
 </html>
