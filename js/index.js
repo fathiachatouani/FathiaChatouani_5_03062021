@@ -30,6 +30,7 @@ function getArticles() {
 
 // Fonction de templatisation d'un produit
 function displayArticle(article) {
+	let price = Number(article.price / 100).toFixed(2)
 	document.getElementById("js_ul").innerHTML += `<li class="item">
 		<a href="produit.html?id=${article._id}">
 			<div>
@@ -37,10 +38,11 @@ function displayArticle(article) {
 				<div class="bloc-description">  
 						<div class="description-produit">
 							<h2>${article.name}</h2>
-							<span class="prix">${article.price} €</span>
+							<span class="prix">${price} €</span>
 						</div>
 				</div>
 			</div>
 		</a>
 	</li>`
+	
 }

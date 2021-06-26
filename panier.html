@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
-        <script src="js/projet-orinoco.js"></script>
+
 	</head>
 
 	<body>
@@ -32,47 +32,54 @@
 
             <div class="bloc-panier">
                 <P class="recap">VOTRE PANIER</p>
-                <div class="items">
-                    <p>Article(s) :</p>
-                    <div></div>
-                    <p class="norb">Norbert (Black)</p>
-                    <select class="color quant">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                    
-                </div>
-                <div class="total">
-                    <div class="prix-unite">
-                        <p> prix unitaire :</p>
-                        <p>29.00 €</p>
-                     </div>
+                    <div><button id="vider" type="button">Vider le panier</button></div>
+                <div id="itemSelected">
 
-                <div class="items">
-                    <p>Article(s) :</p>
-                    <div></div>
-                    <p class="norb">Norbert (Tan)</p>
-                    <select class="color quant">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
+                    <!-- <div class="items">
+                        <p>Article(s) :</p>
+                        <div></div>
+                        <p class="norb">Norbert (Black)</p>
+                        <select class="color quant">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="total">
+                        <div class="prix-unite">
+                            <p> prix unitaire :</p>
+                            <p>29.00 €</p>
+                        </div>
+                    </div> -->
                     
+
+                    <!-- <div class="items">
+                        <p>Article(s) :</p>
+                        <div></div>
+                        <p class="norb">Norbert (Tan)</p>
+                        <select class="color quant">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>    
+                    </div>
+                    <div class="total">
+                        <div class="prix-unite">
+                            <p> prix unitaire :</p>
+                            <p>29.00 €</p>
+                        </div>
+                    
+                    </div> -->
+                    
+                    
+
                 </div>
-                <div class="total">
-                    <div class="prix-unite">
-                        <p> prix unitaire :</p>
-                        <p>29.00 €</p>
-                     </div>
-                    <p class="somme">Total : 0.00 €</p>
-                </div>
+                <div id="totalShopping"></div>
             </div>
-                </div>
-                
-            </div>
+
+
 
 <!-- FORMULAIRE xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
 
@@ -130,29 +137,6 @@
                        <a href="msg-web-service.html"> <button class="color colore">Valider mon panier</button></a>
                     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <footer>
                 <ul>
                     <li>A propos</li>
@@ -163,5 +147,6 @@
                 </ul>
             </footer>
         </main>
+        <script src="js/panier.js"></script>
     </body>
 </html>
