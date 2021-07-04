@@ -86,12 +86,13 @@
                     <p class="livraison">INDIQUEZ LES DETAILS DE LIVRAISON</p>
 					<div class="contact-bloc">
 						<div class="contact-b">
-							<form class="form_1" novalidate>
+							<form class="form_1" id="myForm">
 								<div class="form">
 									<label for="nom">
 										Nom
 									</label>
-									<input id="nom" class="form-control" role="textbox" required tabindex="0" />
+									<input type="text" id="nom" class="form-control" role="textbox" required tabindex="0" />
+                                    <span hidden>Veuiller renseigner votre nom.</span>
 								</div>
 
                                 <div class="form">
@@ -99,6 +100,7 @@
 										Prénom
 									</label>
 									<input id="prenom" class="form-control" role="textbox" required tabindex="0" />
+                                    <span hidden>Veuiller renseigner votre prénom.</span>
 								</div>
 
                                 <div class="form">
@@ -106,13 +108,15 @@
 										Adresse
 									</label>
 									<input id="adresse" class="form-control" role="textbox" required tabindex="0" />
+                                    <span hidden>Veuiller renseigner votre adresse.</span>
 								</div>
 
                                 <div class="form">
 									<label for="postal">
-										Code postal
+										Code postale
 									</label>
 									<input id="postal" class="form-control" role="textbox" required tabindex="0" />
+                                    <span hidden>Veuiller renseigner votre code postal.</span>
 								</div>
 
                                 <div class="form">
@@ -120,6 +124,7 @@
 										Ville
 									</label>
 									<input id="ville" class="form-control" role="textbox" required tabindex="0" />
+                                    <span hidden>Veuiller renseigner votre ville.</span>
 								</div>
 
                                 <div class="form">
@@ -127,15 +132,17 @@
 										Adresse email
 									</label>
 									<input id="email" class="form-control" role="textbox" type="email" required />
+                                    <span hidden>Veuiller renseigner votre email.</span>
 								</div>
+                                <div class="panierp">
+                                    <button class="color colore" id="submit">Valider mon panier</button>
+                                </div>
                             </form>
                          </div>
                     </div>
 
 
-                    <div class="panierp">
-                       <a href="msg-web-service.html"> <button class="color colore">Valider mon panier</button></a>
-                    </div>
+
 
             <footer>
                 <ul>
