@@ -27,7 +27,7 @@ const getProduct = async function() {
             // teddy.colors;
             // console.log(teddy._id, teddy.name, teddy.description, teddy.price, teddyNewPrice, teddy.imageUrl, teddy.colors);
 
-            let teddyCard ="";
+            let teddyCardHTML ="";
 
             let listColorsValue ="";
             const listColors = teddy.colors;
@@ -37,7 +37,7 @@ const getProduct = async function() {
             });
 
             // Insertion du html via js
-            teddyCard = 
+            teddyCardHTML = 
                 `<div>
                     <img class="nounours_img doudou_img" src="${teddy.imageUrl}" alt="visuel ours peluche | Orinoco">
                 </div>
@@ -71,7 +71,7 @@ const getProduct = async function() {
                 
                 </div>`;
 
-                document.getElementById("js_produit").innerHTML = teddyCard;
+                document.getElementById("js_produit").innerHTML = teddyCardHTML;
 
                 // MISE AU PANIER DE L ARTICLE
                 //1 - ajout d'évènement pour savoir si le bouton à été cliquer
@@ -79,7 +79,7 @@ const getProduct = async function() {
                     let colorSelected = document.getElementById("mySelectColor").value;
                     console.log(colorSelected);
 
-                    let qteSelected = document.getElementById("mySelectQte").value;
+                    let qteSelected = Number(document.getElementById("mySelectQte").value);
                     console.log(qteSelected);
 
                     if ( (colorSelected == 0) || (qteSelected == 0) ) {
@@ -96,6 +96,11 @@ const getProduct = async function() {
                     }
                     else {
                         window.alert("Votre article a bien été ajouté au panier");
+
+                        // Création d'une variable qui contiendra soit un item déjà ajouté soit un tableau vide
+                        // itemCart = panier localStorage
+                        let itemCart = JSON.parse(localStorage.getItem('itemCart')) || [];
+
                         let item = {
                             id: teddy._id,
                             name: teddy.name,
@@ -106,12 +111,29 @@ const getProduct = async function() {
                             quantity: qteSelected
                         };
 
-                        // Création d'une variable qui contiendra soit un item déjà ajouté soit un tableau vide
-                        // itemCart = panier localStorage
-                        const itemCart = JSON.parse(localStorage.getItem('itemCart')) || [];
 
-                        // AJOUT DE L OBJET DANS LE TABLEA DU PANIER
-                        itemCart.push(item);
+                        // verifier si un produit à déja été selectionner dans le panier
+                        let isinCart = false;
+
+                        if (itemCart && itemCart.length >= 1){
+                             itemCart = JSON.parse(localStorage.getItem('itemCart'));
+
+                             itemCart.forEach(items => {
+                                if(items.id === item.id && items.color === colorSelected){
+                                    items.quantity = items.quantity + qteSelected;
+                                    quantity = items.quantity;
+                                    isinCart = true;
+                                };
+                             });
+
+                        };
+
+
+                        // AJOUT DE L OBJET DANS LE TABLEAU DU PANIER
+                        if (isinCart == false){
+                            itemCart.push(item);
+                        }
+                        
 
                         localStorage.setItem('itemCart', JSON.stringify(itemCart));
                     }

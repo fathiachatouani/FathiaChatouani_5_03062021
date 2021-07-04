@@ -11,7 +11,7 @@ let sommeHTML = ""; // variable conteneur de l html contenant le prix formaté
 if (itemCart && itemCart.length >= 1) {
     // window.alert("panier existant");
 
-    itemCart.forEach( (itemCart) => { //boucle qui affiche chaqque element html par produit
+    itemCart.forEach( (itemCart) => { //boucle qui affiche chaque element html par produit
         itemCart.name;
         itemCart.description;
         itemCart.price;
@@ -51,7 +51,8 @@ if (itemCart && itemCart.length >= 1) {
     });
 
 
-    let supprimer = document.querySelectorAll("#supprimer");
+    let supprimer = document.querySelectorAll("#supprimer"); // reccuperation du tableau du ou des boutons "supprimer"
+    console.log(supprimer);
     for(let a = 0; a < supprimer.length; a++){
         supprimer[a].addEventListener("click", (event) => {
 
@@ -72,7 +73,7 @@ if (itemCart && itemCart.length >= 1) {
     };
 
 
-    let vider = document.querySelector("#vider");
+    let vider = document.querySelector("#vider"); //renvoi qu'une seule information
     vider.addEventListener("click", (event) => {
 
         localStorage.clear();
@@ -81,16 +82,27 @@ if (itemCart && itemCart.length >= 1) {
     });
 
 
-
-
-
-
-
-
-
     totalPanierFormate = formatPrice(totalPanier * 100)
     sommeHTML = `<p class="somme">Total = ${totalPanierFormate}</p>`;
     document.getElementById("totalShopping").innerHTML = sommeHTML;
+
+
+    // FORMULAIRE
+    let myInputName = document.getElementById("nom");
+
+    let submitForm = document.getElementById("submit");
+    submitForm.addEventListener('click', function formValidation() {
+
+        if (myInputName.value.trim() == "") {
+            myInputName.nextElementSibling.removeAttribute('hidden');
+            // e.preventDefault();
+        }
+        
+    });
+
+    let myInputFirstName = document.getElementById("prenom");
+
+    let 
 
 }
 else {
