@@ -1,161 +1,156 @@
-// Récupération de l'url complète de la page produit
-const url = document.location.search;
+// lancement de la fonction main 
+main()
 
-// verification si l'id apparaît dans l'url
-let idProduct = new URLSearchParams(url).get("id");
-console.log(idProduct);
+// Fonction main qui recupere et affiche les differents produits
+async function main(){
 
-// Création de l'url de l'api et on la stock dans la variable apiUrl
-let apiUrlId = `http://localhost:3000/api/teddies/${idProduct}`;
-console.log(apiUrlId);
+    const articleId = getArticleId();
+    console.log(articleId);
+	const teddy = await getArticleContent(articleId);
+    console.log(teddy);
+    displayArticle(teddy);
+    eventArticle(teddy);
+}
 
-// Récupération via la methode fetch du contenu du produit correspondant a l'id selectionner
-const getProduct = async function() {
-    try {
-        let response = await fetch(apiUrlId);
+// Fonction qui retourne la valeur de l'ID contenu dans l'url
+function getArticleId() {
+    return new URLSearchParams(document.location.search).get("id");
+}
 
-        if (response.ok) {
-            let teddy = await response.json();
-            console.log(teddy);
 
-            // teddy._id;
-            // teddy.name;
-            // teddy.description;
-            // teddy.price;
-            let teddyNewPrice = formatPrice(teddy.price);
-            // teddy.imageUrl;
-            // teddy.colors;
-            // console.log(teddy._id, teddy.name, teddy.description, teddy.price, teddyNewPrice, teddy.imageUrl, teddy.colors);
+// Fonction d'interrogation de l'API POUR RECHERCHER LES PRODUITS PAR ID
+function getArticleContent(articleId) {
+	return fetch(apiUrl + articleId)
+	.then(function(httpBodyResponse) {
+		return httpBodyResponse.json();
+	})
+	.then(function(article) {
+        // console.log(article);
+		return article;
+	})
+	.catch(function(error) {
+		alert(error);
+	})
+}
 
-            let teddyCardHTML ="";
 
-            let listColorsValue ="";
-            const listColors = teddy.colors;
+// Fonction ES6 de templatisation d'un produit
+function displayArticle(teddy) {
+    let price = formatPrice(teddy.price);
+    let listColorsValue = "";
 
-            listColors.forEach((colorValue) => {
-                listColorsValue += `<option value="${colorValue}">${colorValue}</option>`;
-            });
+    teddy.colors.forEach((colorValue) => {
+        listColorsValue += `<option value="${colorValue}">${colorValue}</option>`;
+    });
 
-            // Insertion du html via js
-            teddyCardHTML = 
-                `<div>
-                    <img class="nounours_img doudou_img" src="${teddy.imageUrl}" alt="visuel ours peluche | Orinoco">
-                </div>
-                <div class="bloc-description bloc-descriptions">  
-                    <div class="description-produit description-produits">
-                        <h2>${teddy.name}</h2>
-                        <span class="prix">${teddyNewPrice}</span>
-                    </div>
-                    <div class="descr">
-                        <p>${teddy.description}.</p>
-                    </div>
+    // Insertion du html via js
+    let teddyCardHTML = 
+    `<div>
+        <img class="nounours_img doudou_img" src="${teddy.imageUrl}" alt="visuel ours peluche | Orinoco">
+    </div>
+    <div class="bloc-description bloc-descriptions">  
+        <div class="description-produit description-produits">
+            <h2>${teddy.name}</h2>
+            <span class="prix">${price}</span>
+        </div>
+        <div class="descr">
+            <p>${teddy.description}.</p>
+        </div>
 
-                    <div class="choix">
-                        <select id="mySelectColor" class="color">
-                            <option value="0">Couleur</option>
-                            ${listColorsValue}
-                        </select>
+        <div class="choix">
+            <select id="mySelectColor" class="color">
+                <option value="0">Couleur</option>
+                ${listColorsValue}
+            </select>
 
-                        <select id="mySelectQte" class="quantite">
-                            <option value="0">Quantité</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
+            <select id="mySelectQte" class="quantite">
+                <option value="0">Quantité</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div class="panierp">
+            <a id="btnCard" href="#"> <button type="button" class="color colore">Ajouter au panier</button></a>
+        </div>
+    
+    </div>`;
+
+    document.getElementById("js_produit").innerHTML = teddyCardHTML;
+
+}
+
+
+function eventArticle(teddy){
+    // MISE AU PANIER DE L ARTICLE
+    //1 - ajout d'évènement pour savoir si le bouton à été cliquer
+    document.getElementById("btnCard").addEventListener('click', function addItemCart(event) {
+        let colorSelected = document.getElementById("mySelectColor").value;
+        console.log(colorSelected);
+
+        let qteSelected = Number(document.getElementById("mySelectQte").value);
+        console.log(qteSelected);
+
+        if ( (colorSelected == 0) || (qteSelected == 0) ) {
+            if (colorSelected == 0) {
+                window.alert("Veuillez choisir une couleur");
+                event.preventDefault();
+            }
             
-                    <div class="panierp">
-                        <a id="btnCard" href="#"> <button type="button" class="color colore">Ajouter au panier</button></a>
-                    </div>
-                
-                </div>`;
-
-                document.getElementById("js_produit").innerHTML = teddyCardHTML;
-
-                // MISE AU PANIER DE L ARTICLE
-                //1 - ajout d'évènement pour savoir si le bouton à été cliquer
-                document.getElementById("btnCard").addEventListener('click', function addItemCart(event) {
-                    let colorSelected = document.getElementById("mySelectColor").value;
-                    console.log(colorSelected);
-
-                    let qteSelected = Number(document.getElementById("mySelectQte").value);
-                    console.log(qteSelected);
-
-                    if ( (colorSelected == 0) || (qteSelected == 0) ) {
-                        if (colorSelected == 0) {
-                            window.alert("Veuillez choisir une couleur");
-                            event.preventDefault();
-                        }
-                        
-                        if(qteSelected == 0) {
-                            window.alert("Veullez choisir une quantité");
-                            event.preventDefault();
-                        }
-                        event.preventDefault();
-                    }
-                    else {
-                        window.alert("Votre article a bien été ajouté au panier");
-
-                        // Création d'une variable qui contiendra soit un item déjà ajouté soit un tableau vide
-                        // itemCart = panier localStorage
-                        let itemCart = JSON.parse(localStorage.getItem('itemCart')) || [];
-
-                        let item = {
-                            id: teddy._id,
-                            name: teddy.name,
-                            imageUrl: teddy.imageUrl,
-                            price: teddyNewPrice,
-                            description: teddy.description,
-                            color: colorSelected,
-                            quantity: qteSelected
-                        };
-
-
-                        // verifier si un produit à déja été selectionner dans le panier
-                        let isinCart = false;
-
-                        if (itemCart && itemCart.length >= 1){
-                             itemCart = JSON.parse(localStorage.getItem('itemCart'));
-
-                             itemCart.forEach(items => {
-                                if(items.id === item.id && items.color === colorSelected){
-                                    items.quantity = items.quantity + qteSelected;
-                                    quantity = items.quantity;
-                                    isinCart = true;
-                                };
-                             });
-
-                        };
-
-
-                        // AJOUT DE L OBJET DANS LE TABLEAU DU PANIER
-                        if (isinCart == false){
-                            itemCart.push(item);
-                        }
-                        
-
-                        localStorage.setItem('itemCart', JSON.stringify(itemCart));
-                    }
-                });
+            if(qteSelected == 0) {
+                window.alert("Veullez choisir une quantité");
+                event.preventDefault();
+            }
+            event.preventDefault();
         }
-        
-        // SI REPONSE AVEC UNE ERREUR SUITE AU FETCH
         else {
-            console.error("une erreur " + response.status + " à été retourné par le serveur.");
+            window.alert("Votre article a bien été ajouté au panier");
+
+            // Création d'une variable qui contiendra soit un item déjà ajouté soit un tableau vide
+            // itemCart = panier localStorage
+            let itemCart = JSON.parse(localStorage.getItem('itemCart')) || [];
+            let teddyNewPrice = formatPrice(teddy.price);
+
+            // Contenu de la variable item
+            let item = {
+                id: teddy._id,
+                name: teddy.name,
+                imageUrl: teddy.imageUrl,
+                price: teddyNewPrice,
+                description: teddy.description,
+                color: colorSelected,
+                quantity: qteSelected
+            };
+
+
+            // verifier si un produit à déja été selectionner dans le panier
+            let isinCart = false;
+
+            if (itemCart && itemCart.length >= 1){
+                    itemCart = JSON.parse(localStorage.getItem('itemCart'));
+
+                    itemCart.forEach(items => {
+                        if(items.id === item.id && items.color === colorSelected){
+                            items.quantity = items.quantity + qteSelected;
+                            quantity = items.quantity;
+                            isinCart = true;
+                        };
+                    });
+
+            };
+
+
+            // AJOUT DE L OBJET DANS LE TABLEAU DU PANIER
+            if (isinCart == false){
+                itemCart.push(item);
+            }
+            
+
+            localStorage.setItem('itemCart', JSON.stringify(itemCart));
         }
-    }
-    // En cas d'erreur on affiche le message d'erreur qui a été retourné
-    catch (e) {
-        console.log("message d'erreur : ", e);
-    }
+    });
 }
-
-// Fonction pour formater le prix et avoir le chiffre après la virgule et ajout du symbole euro
-function formatPrice(itemPrice){
-    return Intl.NumberFormat("fr-FR", {style: "currency", currency: "EUR", minimumFractionDigits: 2,}).format(itemPrice / 100);
-
-}
-
-// Appel de la fonction principal getProduct
-getProduct();
+                
