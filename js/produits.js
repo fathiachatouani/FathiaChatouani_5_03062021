@@ -2,7 +2,7 @@
 main()
 
 // Fonction main qui recupere et affiche les differents produits
-async function main(){
+async function main() {
 
     const articleId = getArticleId();
     console.log(articleId);
@@ -25,7 +25,7 @@ function getArticleContent(articleId) {
 		return httpBodyResponse.json();
 	})
 	.then(function(article) {
-        // console.log(article);
+        console.log(article);
 		return article;
 	})
 	.catch(function(error) {
@@ -74,7 +74,7 @@ function displayArticle(teddy) {
         </div>
 
         <div class="panierp">
-            <a id="btnCard" href="#"> <button type="button" class="color colore">Ajouter au panier</button></a>
+            <a id="btnCard" href="#"><button type="button" class="color colore">Ajouter au panier</button></a>
         </div>
     
     </div>`;
@@ -94,7 +94,10 @@ function eventArticle(teddy){
         let qteSelected = Number(document.getElementById("mySelectQte").value);
         console.log(qteSelected);
 
+        // test pour savoir si une couleur ET une quantité ont été séléctionné
         if ( (colorSelected == 0) || (qteSelected == 0) ) {
+
+            // Si une des conditions au dussu non pas été rempli on test si c'est la quatité ou la couleur qui n a pas été sélectionné
             if (colorSelected == 0) {
                 window.alert("Veuillez choisir une couleur");
                 event.preventDefault();
@@ -112,14 +115,14 @@ function eventArticle(teddy){
             // Création d'une variable qui contiendra soit un item déjà ajouté soit un tableau vide
             // itemCart = panier localStorage
             let itemCart = JSON.parse(localStorage.getItem('itemCart')) || [];
-            let teddyNewPrice = formatPrice(teddy.price);
+            let price = formatPrice(teddy.price);
 
             // Contenu de la variable item
             let item = {
                 id: teddy._id,
                 name: teddy.name,
                 imageUrl: teddy.imageUrl,
-                price: teddyNewPrice,
+                price: price,
                 description: teddy.description,
                 color: colorSelected,
                 quantity: qteSelected
@@ -132,11 +135,15 @@ function eventArticle(teddy){
             if (itemCart && itemCart.length >= 1){
                     itemCart = JSON.parse(localStorage.getItem('itemCart'));
 
+            // Comparaison du produit dans le local storage avec le produit de la page produit sur lequel on à cliquer
+            // si le produit est le même on ajoute une quantité à la place d une nouvelle ligne identique dans le panier
                     itemCart.forEach(items => {
                         if(items.id === item.id && items.color === colorSelected){
+                
                             items.quantity = items.quantity + qteSelected;
                             quantity = items.quantity;
                             isinCart = true;
+                
                         };
                     });
 

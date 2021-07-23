@@ -1,7 +1,7 @@
 let itemCart = JSON.parse(localStorage.getItem("itemCart"));
 // console.log(itemCart);
 
-let productHTML = ""; // variable conteneur de l html
+let teddyCardHTML = ""; // variable conteneur de l html
 let totalLine = 0;
 let totalLineFormate = "";
 let totalPanier = 0;
@@ -25,7 +25,7 @@ if (itemCart && itemCart.length >= 1) {
 
         totalPanier += totalLine;
 
-        productHTML += `
+        teddyCardHTML += `
         <div class="items">
             <p>Article(s) :</p>
             <div><img src="${itemCart.imageUrl}" width="100"></div>
@@ -47,7 +47,7 @@ if (itemCart && itemCart.length >= 1) {
         </div>
         `;
 
-        document.getElementById("itemSelected").innerHTML = productHTML;
+        document.getElementById("itemSelected").innerHTML = teddyCardHTML;
     });
 
 
