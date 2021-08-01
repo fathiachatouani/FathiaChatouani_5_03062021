@@ -37,7 +37,7 @@ function getArticleContent(articleId) {
 // Fonction ES6 de templatisation d'un produit
 function displayArticle(teddy) {
     let price = formatPrice(teddy.price);
-    let listColorsValue = "";
+    let listColorsValue;
 
     teddy.colors.forEach((colorValue) => {
         listColorsValue += `<option value="${colorValue}">${colorValue}</option>`;
@@ -115,14 +115,15 @@ function eventArticle(teddy){
             // Création d'une variable qui contiendra soit un item déjà ajouté soit un tableau vide
             // itemCart = panier localStorage
             let itemCart = JSON.parse(localStorage.getItem('itemCart')) || [];
-            let price = formatPrice(teddy.price);
+            // let price = formatPrice(teddy.price);
 
             // Contenu de la variable item
             let item = {
                 id: teddy._id,
                 name: teddy.name,
                 imageUrl: teddy.imageUrl,
-                price: price,
+                // price: price,
+                price: teddy.price,
                 description: teddy.description,
                 color: colorSelected,
                 quantity: qteSelected

@@ -230,6 +230,27 @@ nav ul{
     cursor: pointer;
 }
 
+#btnCard{
+    max-width: 460px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#vider{
+    width: 126px;
+    font-size: 16px;
+    padding: 9px;
+    margin-bottom: 46px;
+    border-radius: 15px;
+}
+
+#supprimer{
+    width: 108px;
+    padding: 9px;
+    border-radius: 15px;
+}
+
 .panierp{
     margin: 30px 0;
     display: flex;

@@ -2,62 +2,26 @@ let itemCart = JSON.parse(localStorage.getItem("itemCart"));
 // console.log(itemCart);
 
 let teddyCardHTML = ""; // variable conteneur de l html
-let unitePrice = 0;
 let totalLine = 0;
 let totalLineFormate = "";
 let totalPanier = 0;
 let totalPanierFormate = "";
+let sommeHTML = ""; // variable conteneur de l html contenant le prix formaté
 
- // FORMULAIRE
- let myInputName = document.getElementById("nom");
- let myInputFirstName = document.getElementById("prenom");
- let myInputAddress = document.getElementById("adresse");
- let myInputPostal = document.getElementById("postal");
- let myInputTown = document.getElementById("ville");
- let myInputMail = document.getElementById("email");
+if (itemCart && itemCart.length >= 1) {
+    // window.alert("panier existant");
 
- let nameRegEx =  /^[a-z -]+$/i;
- let addressRegEx = /^[A-Z-a-z-0-9\s]{5,80}$/;
- let zipRegEx = /^\d{5}$/;
- let cityRegEx = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
-//  let mailRegEx = /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)+)@([A-Za-z0-9]+)(([\-]?[a-zA-Z0-9]+)+)\.([A-Za-z]{2,4})$/;
- let mailRegEx = /^[a-zA-Z0-9]+@[a-zA-Z0-9-]+(.[a-zA-Z0-9-]+)*$/;
-
-
-main();
-
-function main() {
-
-    if (itemCart && itemCart.length >= 1) {
-        // window.alert("panier existant");
-
-        displayArticles(itemCart);
-        supprimerItem();
-        viderPanier();
-        displayTotal();
-        events();
-    }
-    else {
-        window.alert("panier vide");
-        window.location.href = "index.html";
-    };
-    
-}
-
-function displayArticles(itemCart) {
     itemCart.forEach( (itemCart) => { //boucle qui affiche chaque element html par produit
-        // itemCart.name;
-        // itemCart.description;
-        // itemCart.price;
-        // itemCart.color;
-        // itemCart.quantity;
-        // itemCart.imageUrl;
-        // itemCart.id;
+        itemCart.name;
+        itemCart.description;
+        itemCart.price;
+        itemCart.color;
+        itemCart.quantity;
+        itemCart.imageUrl;
+        itemCart.id;
 
-        unitePrice =  formatPrice(itemCart.price);
-        totalLine = itemCart.price * itemCart.quantity;
-        // console.log(totalLine);
-        totalLineFormate = formatPrice(totalLine);
+        totalLine = parseFloat(itemCart.price) * itemCart.quantity;
+        totalLineFormate = formatPrice(totalLine * 100);
 
         totalPanier += totalLine;
 
@@ -72,7 +36,7 @@ function displayArticles(itemCart) {
         <div class="total">
             <div class="prix-unite">
                 <p> prix unitaire :</p>
-                <p>${unitePrice}</p>
+                <p>${itemCart.price}</p>
             </div>
         </div>
         <div class="total">
@@ -85,12 +49,10 @@ function displayArticles(itemCart) {
 
         document.getElementById("itemSelected").innerHTML = teddyCardHTML;
     });
-}
 
-function supprimerItem() {
 
     let supprimer = document.querySelectorAll("#supprimer"); // reccuperation du tableau du ou des boutons "supprimer"
-    // console.log(supprimer);
+    console.log(supprimer);
     for(let a = 0; a < supprimer.length; a++){
         supprimer[a].addEventListener("click", (event) => {
 
@@ -110,9 +72,6 @@ function supprimerItem() {
 
     };
 
-}
-
-function viderPanier() {
 
     let vider = document.querySelector("#vider"); //renvoi qu'une seule information
     vider.addEventListener("click", (event) => {
@@ -122,28 +81,37 @@ function viderPanier() {
         event.preventdefault();
     });
 
-}
 
-function displayTotal() {
+    totalPanierFormate = formatPrice(totalPanier * 100)
+    sommeHTML = `<p class="somme">Total = ${totalPanierFormate}</p>`;
+    document.getElementById("totalShopping").innerHTML = sommeHTML;
 
-    // console.log(totalPanier);
-    totalPanierFormate = formatPrice(totalPanier);
-    document.getElementById("totalShopping").innerHTML = `<p class="somme">Total = ${totalPanierFormate}</p>`;
 
-}
+    // FORMULAIRE
+    let myInputName = document.getElementById("nom");
+    let myInputFirstName = document.getElementById("prenom");
+    let myInputAddress = document.getElementById("adresse");
+    let myInputPostal = document.getElementById("postal");
+    let myInputTown = document.getElementById("ville");
+    let myInputMail = document.getElementById("email");
 
- // fonction pour la validation des champs du formulaire aves les Regex
- function validRegexForm(field, regex) {
-    if (regex.test(field.value) === true) {
-        field.nextElementSibling.setAttribute('hidden', 'hidden');
-        return true;
-    } else {
-        field.nextElementSibling.removeAttribute('hidden');
-        return false;
+    let nameRegEx = /^[A-Za-zàçéèêëîïôöûüÿÀÉÈËÎÏÔÖÛÜ]+([-'\s][A-Za-zàçéèêëîïôöûüÿÀÉÈËÎÏÔÖÛÜ]+)?$/;
+    let addressRegEx = /^[^&~"#{([|`_\\\^@\])}=+°¨$£¤%!§:;.?<>/*]+$/;
+    let zipRegEx = /^\d{5}$/;
+    let cityRegEx = /^[A-Za-zàçéèêëîïôöûüÿÀÉÈËÎÏÔÖÛÜ]+(([-'\s][A-Za-zàçéèêëîïôöûüÿÀÉÈËÎÏÔÖÛÜ]+)+)?$/;
+    let mailRegEx = /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)+)@([A-Za-z0-9]+)(([\-]?[a-zA-Z0-9]+)+)\.([A-Za-z]{2,4})$/;
+
+
+    // fonction pour la validation des champs du formulaire aves les Regex
+    function validRegexForm (field, regex) {
+        if (regex.test(field.value) === true) {
+            field.nextElementSibling.setAttribute('hidden', 'hidden');
+            return true;
+        } else {
+            field.nextElementSibling.removeAttribute('hidden');
+            return false;
+        }
     }
-}
-
-function events() {
 
     let submitForm = document.getElementById("submit");
     submitForm.addEventListener('click', function formValidation() {
@@ -172,11 +140,8 @@ function events() {
             };
             console.log(prix);
 
-            // On creer un tableau vide appelé products
             let products = [];
-            // On recupere tous les éléments du localStorage
             itemCart = JSON.parse(localStorage.getItem("itemCart"));
-            // Pour chaque elements du localStorage on recupere les ID que lon ajoute dans le tableau products
             itemCart.forEach(product => {
                 products.push(product.id);
             });
@@ -186,38 +151,45 @@ function events() {
                 contact,
                 products
             };
-            // console.log(contProd);
+            console.log(contProd);
 
-            postOrder(contProd, prix);
+            const postOrder = async function() {
+                try {
+                    let responseOrder = await fetch(apiUrl + "order", {
+                        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                        method: "POST",
+                        body: JSON.stringify(contProd)
+                    });//.then(response => response.json());
+
+                    if (responseOrder.ok){
+                        console.log(responseOrder);
+                        let ArrayOrderId = await responseOrder.json();
+                        localStorage.setItem('ArrayOrderId', JSON.stringify(ArrayOrderId) );
+                        localStorage.setItem('ArrayPrixTotal', JSON.stringify(prix) );
+
+                        window.location.href = "msg-web-service.html";
+                    }
+                    
+                    else {
+                        console.error("Une erreur " + responseOrder.status + " à été retourné par le serveur.");
+                    }
+
+                }
+                catch (e){
+                    console.log("message d'erreur : ", e);
+                }
+            };
+
+            postOrder();
 
         }
     });
 
+  
+
 }
-
-async function postOrder(contProd, prix) {
-    try {
-        let responseOrder = await fetch(apiUrl + "order", {
-            headers: { 'Content-Type': 'application/json; charset=utf-8' },
-            method: "POST",
-            body: JSON.stringify(contProd)
-        });
-
-        if (responseOrder.ok){
-            console.log(responseOrder);
-            let ArrayOrderId = await responseOrder.json();
-            localStorage.setItem('ArrayOrderId', JSON.stringify(ArrayOrderId) );
-            localStorage.setItem('ArrayPrixTotal', JSON.stringify(prix) );
-
-            window.location.href = "msg-web-service.html";
-        }
-        
-        else {
-            console.error("Une erreur " + responseOrder.status + " à été retourné par le serveur.");
-        }
-
-    }
-    catch (e){
-        console.log("message d'erreur : ", e);
-    }
+else {
+    window.alert("panier vide");
 };
+
+

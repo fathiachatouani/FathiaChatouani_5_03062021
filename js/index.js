@@ -45,7 +45,6 @@ function displayArticle(article) {
 				</div>
 			</div>
 		</a>
-	</li>`
-	
+	</li>`	
 }
 
