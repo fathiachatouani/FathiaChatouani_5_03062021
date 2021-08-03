@@ -20,7 +20,6 @@ let totalPanierFormate = "";
  let addressRegEx = /^[A-Z-a-z-0-9\s]{5,80}$/;
  let zipRegEx = /^\d{5}$/;
  let cityRegEx = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
-//  let mailRegEx = /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)+)@([A-Za-z0-9]+)(([\-]?[a-zA-Z0-9]+)+)\.([A-Za-z]{2,4})$/;
  let mailRegEx = /^[a-zA-Z0-9]+@[a-zA-Z0-9-]+(.[a-zA-Z0-9-]+)*$/;
 
 
@@ -105,7 +104,7 @@ function supprimerItem() {
 
             localStorage.setItem("itemCart", JSON.stringify(itemCartSuppr));
             window.location.reload();
-            event.preventDefault();
+            // event.preventDefault();
         });
 
     };
@@ -119,7 +118,7 @@ function viderPanier() {
 
         localStorage.clear();
         window.location.reload();
-        event.preventdefault();
+        // event.preventdefault();
     });
 
 }

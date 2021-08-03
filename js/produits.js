@@ -9,7 +9,7 @@ async function main() {
 	const teddy = await getArticleContent(articleId);
     console.log(teddy);
     displayArticle(teddy);
-    eventArticle(teddy);
+    testOptions(teddy);
 }
 
 // Fonction qui retourne la valeur de l'ID contenu dans l'url
@@ -36,6 +36,18 @@ function getArticleContent(articleId) {
 
 // Fonction ES6 de templatisation d'un produit
 function displayArticle(teddy) {
+
+    const articleId = getArticleId();
+
+    // message d'erreur dans le cas ou l'utilisateur irait saisir un id dans l'Url de la page
+    if (teddy._id != articleId) {
+        let errorId = "Produit inexistant";
+        document.getElementById('errorMsg').innerHTML = errorId;
+
+    }
+        // console.log(articleId);
+    // console.log(teddy._id);
+
     let price = formatPrice(teddy.price);
     let listColorsValue;
 
@@ -84,13 +96,14 @@ function displayArticle(teddy) {
 }
 
 
-function eventArticle(teddy){
+function testOptions(teddy) {
     // MISE AU PANIER DE L ARTICLE
     //1 - ajout d'évènement pour savoir si le bouton à été cliquer
     document.getElementById("btnCard").addEventListener('click', function addItemCart(event) {
+        
         let colorSelected = document.getElementById("mySelectColor").value;
         console.log(colorSelected);
-
+        
         let qteSelected = Number(document.getElementById("mySelectQte").value);
         console.log(qteSelected);
 
@@ -110,55 +123,62 @@ function eventArticle(teddy){
             event.preventDefault();
         }
         else {
+
+            eventArticle(teddy);
+
             window.alert("Votre article a bien été ajouté au panier");
-
-            // Création d'une variable qui contiendra soit un item déjà ajouté soit un tableau vide
-            // itemCart = panier localStorage
-            let itemCart = JSON.parse(localStorage.getItem('itemCart')) || [];
-            // let price = formatPrice(teddy.price);
-
-            // Contenu de la variable item
-            let item = {
-                id: teddy._id,
-                name: teddy.name,
-                imageUrl: teddy.imageUrl,
-                // price: price,
-                price: teddy.price,
-                description: teddy.description,
-                color: colorSelected,
-                quantity: qteSelected
-            };
-
-
-            // verifier si un produit à déja été selectionner dans le panier
-            let isinCart = false;
-
-            if (itemCart && itemCart.length >= 1){
-                    itemCart = JSON.parse(localStorage.getItem('itemCart'));
-
-            // Comparaison du produit dans le local storage avec le produit de la page produit sur lequel on à cliquer
-            // si le produit est le même on ajoute une quantité à la place d une nouvelle ligne identique dans le panier
-                    itemCart.forEach(items => {
-                        if(items.id === item.id && items.color === colorSelected){
-                
-                            items.quantity = items.quantity + qteSelected;
-                            quantity = items.quantity;
-                            isinCart = true;
-                
-                        };
-                    });
-
-            };
-
-
-            // AJOUT DE L OBJET DANS LE TABLEAU DU PANIER
-            if (isinCart == false){
-                itemCart.push(item);
-            }
-            
-
-            localStorage.setItem('itemCart', JSON.stringify(itemCart));
         }
     });
 }
-                
+
+
+function eventArticle(teddy){
+
+    let colorSelected = document.getElementById("mySelectColor").value;
+    let qteSelected = Number(document.getElementById("mySelectQte").value);
+
+    // Création d'une variable qui contiendra soit un item déjà ajouté soit un tableau vide
+    let itemCart = JSON.parse(localStorage.getItem('itemCart')) || [];
+
+    // Contenu de la variable item
+    let item = {
+        id: teddy._id,
+        name: teddy.name,
+        imageUrl: teddy.imageUrl,
+        price: teddy.price,
+        description: teddy.description,
+        color: colorSelected,
+        quantity: qteSelected
+    };
+
+
+    // verifier si un produit à déja été selectionner dans le panier
+    let isinCart = false;
+
+    if (itemCart && itemCart.length >= 1){
+            itemCart = JSON.parse(localStorage.getItem('itemCart'));
+
+    // Comparaison du produit dans le local storage avec le produit de la page produit sur lequel on à cliquer
+    // si le produit est le même on ajoute une quantité à la place d une nouvelle ligne identique dans le panier
+            itemCart.forEach(items => {
+                if(items.id === item.id && items.color === colorSelected){
+        
+                    items.quantity = items.quantity + qteSelected;
+                    quantity = items.quantity;
+                    isinCart = true;
+        
+                };
+            });
+
+    };
+
+
+    // AJOUT DE L OBJET DANS LE TABLEAU DU PANIER
+    if (isinCart == false){
+        itemCart.push(item);
+    }
+    
+
+    localStorage.setItem('itemCart', JSON.stringify(itemCart));
+
+}

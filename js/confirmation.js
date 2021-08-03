@@ -10,6 +10,6 @@ confirmTotal.innerHTML = ArrayPrixTotal.prixTotal;
 setTimeout( function OrderValided() {
     localStorage.clear();
     window.location.href = "index.html";
-}, 5000);
+}, 15000);
 
 
